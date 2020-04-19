@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t juuzeff/frontend-hello -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true juuzeff/frontend-hello yarn test
