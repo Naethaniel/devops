@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t juuzeff/frontend-hello -f Dockerfile.dev Lab5/frontend-hello
+  - docker build -t juuzeff/frontend-hello -f Dockerfile.dev ./Lab5/frontend-hello
 
 script:
   - docker run -e CI=true juuzeff/frontend-hello yarn test
