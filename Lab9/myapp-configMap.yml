@@ -9,3 +9,4 @@ data:
   PGUSER: postgres
   PGPORT: 5432
   REDISPORT: 6379
+  PGDB: postgresdb
