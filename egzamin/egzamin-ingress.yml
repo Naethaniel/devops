@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+
+kind: Ingress
+
+metadata:
+  name: egzamin-ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /api/?(.*)
+            backend:
+              serviceName: egzamin-backend-clusterip
+              servicePort: 5000
+          - path: /(.*)
+            backend:
+              serviceName: egzamin-frontend-clusterip
+              servicePort: 80

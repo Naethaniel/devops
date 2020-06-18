@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: egzamin-backend-deployment
+  labels:
+    app: egzamin-backend
+    type: backend
+
+spec:
+  template:
+    metadata:
+      name: egzamin-backend-pod
+      labels:
+        app: egzamin-backend
+        type: backend
+    spec:
+      containers:
+        - name: egzamin-backend-container
+          image: juuzeff/egzamin-backend
+          envFrom:
+            - configMapRef:
+                name: egzamin-config
+            - secretRef:
+                name: egzamin-secret
+  replicas: 3
+  selector:
+    matchLabels:
+      app: egzamin-backend
+      type: backend

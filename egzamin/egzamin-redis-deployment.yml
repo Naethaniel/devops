@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: egzamin-redis-deployment
+  labels:
+    app: egzamin-redis
+    type: cache
+
+spec:
+  template:
+    metadata:
+      name: egzamin-redis
+      labels:
+        app: egzamin-redis
+        type: cache
+    spec:
+      containers:
+        - name: egzamin-redis-container
+          image: redis
+  replicas: 1
+  selector:
+    matchLabels:
+      app: egzamin-redis
+      type: cache

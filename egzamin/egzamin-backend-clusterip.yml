@@ -1,0 +1,15 @@
+apiVersion: v1
+
+kind: Service
+
+metadata:
+  name: egzamin-backend-clusterip
+
+spec:
+  type: ClusterIP
+  ports:
+    - targetPort: 5000 # port docelowy aplikacji w node
+      port: 5000
+  selector: # wybieramy deployment zgodny z yml [nazwy!]
+    app: egzamin-backend
+    type: backend

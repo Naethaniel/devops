@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: egzamin-frontend-deployment
+  labels:
+    app: egzamin-frontend
+    type: frontend
+
+spec:
+  template:
+    metadata:
+      name: egzamin-frontend-pod
+      labels:
+        app: egzamin-frontend
+        type: frontend
+    spec:
+      containers:
+        - name: egzamin-frontend-container
+          image: juuzeff/egzamin-frontend
+  replicas: 1
+  selector:
+    matchLabels:
+      app: egzamin-frontend
+      type: frontend

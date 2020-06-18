@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: egzamin-postgres-deployment
+  labels:
+    app: egzamin-postgres
+    type: db
+
+spec:
+  template:
+    metadata:
+      name: egzamin-postgres-pod
+      labels:
+        app: egzamin-postgres
+        type: db
+
+    spec:
+      volumes:
+        - name: postgresvolume
+          persistentVolumeClaim:
+            claimName: egzamin-postgres-pvc
+
+      containers:
+        - name: egzamin-postgres-container
+          image: postgres
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              subPath: postgres
+              name: postgresvolume
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: egzamin-secret
+                  key: PGPASSWORD
+
+  replicas: 1
+  selector:
+    matchLabels:
+      type: db
+      app: egzamin-postgres

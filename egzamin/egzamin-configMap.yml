@@ -1,0 +1,12 @@
+apiVersion: v1
+
+kind: ConfigMap
+
+metadata:
+  name: egzamin-config
+
+data:
+  REDISPORT: "6379"
+  REDISHOST: "egzamin-redis-clusterip"
+  PGPORT: "5432"
+  PGHOST: "egzamin-postgres-clusterip"
