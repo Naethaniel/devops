@@ -19,7 +19,7 @@ spec:
       containers:
         - name: egzamin-frontend-container
           image: juuzeff/egzamin-frontend
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: egzamin-frontend
